@@ -37,8 +37,14 @@ function promptUser() {
     return inquirer.prompt(generalQuestions)
     .then(({name, id, role, email}) => {
         console.log(name, id, role, email)
-    }) //todo: if else statements to determine role and prompt additional questions based on role response
-}
+    }) 
+    // if (role === Engineer) {
+    //     promptEngineerQuestion()
+    // } else if (role === Intern) {
+    //     promptInternQuestion()
+    // } else promptManagerQuestion()
+    }
+    //todo: if else statements to determine role and prompt additional questions based on role response
 function promptEngineerQuestion() {
     return inquirer.prompt({
         type: "input",
