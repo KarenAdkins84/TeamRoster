@@ -1,0 +1,22 @@
+header {
+    background-color: lightskyblue;
+    padding: 10px;
+    margin: 10px;
+    text-align: center;
+    font-size: 50px;
+}
+
+.card {
+    max-width: 200px;
+    max-height: 250px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    margin: 10px;
+    padding: 5px;
+}
+
+.card-header {
+    background-color: lightseagreen;
+}

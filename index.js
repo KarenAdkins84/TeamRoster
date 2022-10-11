@@ -1,78 +1,183 @@
-//install inquirer@8.2.4
-//install jest
-//need tests directory(employee, engineer, intern, manager)
-//need classes folder(lib)
-//src=template helper code
-//dist--for rendered html ouput and css
-//need gitignore&&package.json
+const fs = require("fs")
+const sortArray = require("./generatesHTML")
 const inquirer = require("inquirer")
 const Engineer = require("./lib/Engineer")
 const Intern = require("./lib/Intern")
 const Manager = require("./lib/Manager")
+var allEmployees = []
 
-const generalQuestions = [
+//Initial message in command line upon startup//
+console.log("Welcome to the Team Profile Generator!")
+
+
+//initial inquirer prompt questions//
+const initialQuestions = [
     {
         type: "input",
-        name: "name",
-        message: "What is the employee's name?",
+        name: "mgrName",
+        message: "What is the manager's name?",
     },
     {
         type: "input",
-        name: "id",
-        message: "What is the employees's id?"
+        name: "mgrId",
+        message: "What is the manager's id number?"
     },
     {
         type: "input",
-        name: "email",
-        message: "What is the employee's email?"
+        name: "mgrEmail",
+        message: "What is the manager's email address?"
+    },
+    {
+        type: "input",
+        name: "mgrOfficeNum",
+        message: "What is the manager's office number?"
     },
     {
         type: "list",
         name: "role",
-        message: "Which role does this employee take?",
-        choices: ["Engineer", "Intern", "Manager"]
-    }
-]
+        message: "Which type of employee would you like to add next?",
+        choices: [
+            "Engineer", 
+            "Intern", 
+            "I am finished building my team.",
+        ]
+    },
+ ]; //.then((r) => {
+//     mgrOutput.push(r)
+//     let newMgr = new Manager(r.mgrName, r.mgrId, r.mgrEmail, r.mgrOfficeNum);
+
+//     let mgrName = newMgr.getName();
+//     let mgrId = newMgr.getId();
+//     let mgrEmail = newMgr.getEmail();
+//     let mgrOfficeNum = newMgr.getOfficeNum();
+//     let role = newMgr.getRole();
+//})
+
+
+
 function promptUser() {
-    return inquirer.prompt(generalQuestions)
-    .then(({name, id, role, email}) => {
-        console.log(name, id, role, email)
+    return inquirer.prompt(initialQuestions)
+    .then(({mgrName, mgrId, role, mgrEmail, mgrOfficeNum}) => {
+        //console.log(mgrName, mgrId, role, mgrEmail, mgrOfficeNum)
+        let newMgr = new Manager(mgrName, mgrId, mgrEmail, mgrOfficeNum)
+        console.log(newMgr)
+        allEmployees.push(newMgr)
+        if (role === "Engineer") {
+            promptEngineerQuestions()
+        } else if (role === "Intern") {
+            promptInternQuestions()
+        } else {
+            console.log("Generating HTML!")
+            sortArray(allEmployees)
+        }
     }) 
-    // if (role === Engineer) {
-    //     promptEngineerQuestion()
-    // } else if (role === Intern) {
-    //     promptInternQuestion()
-    // } else promptManagerQuestion()
     }
-    //todo: if else statements to determine role and prompt additional questions based on role response
-function promptEngineerQuestion() {
-    return inquirer.prompt({
+
+
+function promptEngineerQuestions() {
+    return inquirer.prompt([
+    {
         type: "input",
-        name: "github",
-        message: "What is the engineer's GitHub username?"
-    })
-    .then(({github}) => {
-        console.log(github)
+        name: "engName",
+        message: "What is the engineer's name?"
+    },
+    {
+        type: "input",
+        name: "engId",
+        message: "What is the engineer's ID number?"
+    },
+    {
+        type: "input",
+        name: "engEmail",
+        message: "What is the engineer's email address?"
+    },
+    {
+        type: "input",
+        name: "engGithub",
+        message: "What is the engineer's Github username?"
+    },
+    {
+        type: "list",
+        name: "role",
+        message: "Which type of employee would you like to add next?",
+        choices: [
+            "Engineer", 
+            "Intern", 
+            "I am finished building my team.",
+        ]
+    }])
+    .then(({engName, engId, engEmail, engGithub, role}) => {
+        //console.log(github)
+        let newEng = new Engineer(engName, engId, engEmail, engGithub,)
+        console.log(newEng)
+        allEmployees.push(newEng)
+        if (role === "Engineer") {
+            promptEngineerQuestions()
+        } else if (role === "Intern") {
+            promptInternQuestions()
+        } else {
+            console.log("Generating HTML!")
+            sortArray(allEmployees)
+        }
     })
 }
-function promptInternQuestion() {
-    return inquirer.prompt({
+
+function promptInternQuestions() {
+    return inquirer.prompt([
+        {
+        type: "input",
+        name: "internName",
+        message: "What is the intern's name?"
+    },
+    {
+        type: "input",
+        name: "internId",
+        message: "What is the intern's ID number?"
+    },
+    {
+        type: "input",
+        name: "internEmail",
+        message: "What is the intern's email address?"
+    },
+    {
         type: "input",
         name: "school",
         message: "What school does the intern attend?"
-    })
-    .then(({school}) => {
-        console.log(school)
+    },
+    {
+        type: "list",
+        name: "role",
+        message: "Which type of employee would you like to add next?",
+        choices: [
+            "Engineer", 
+            "Intern", 
+            "I am finished building my team.",
+        ]
+    }])
+    .then(({internName, internId, internEmail, school, role}) => {
+        //console.log(school)
+        let newIntern = new Intern(internName, internId, internEmail, school)
+        console.log(newIntern)
+        allEmployees.push(newIntern)
+        if (role === "Engineer") {
+            promptEngineerQuestions()
+        } else if (role === "Intern") {
+            promptInternQuestions()
+        } else {
+            console.log("Generating HTML!")
+            sortArray(allEmployees)
+        }
+
     })
 }
-function promptManagerQuestion() {
-    return inquirer.prompt({
-        type: "input",
-        name: "officeNum",
-        message: "What is the manager's office number?"
-    })
-    .then(({officeNum}) => {
-        console.log(officeNum)
-    })
-}
+// function promptManagerQuestion() {
+//     return inquirer.prompt({
+//         type: "input",
+//         name: "officeNum",
+//         message: "What is the manager's office number?"
+//     })
+//     .then(({officeNum}) => {
+//         console.log(officeNum)
+//     })
+// }
 promptUser()
