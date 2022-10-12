@@ -55,4 +55,65 @@ function internCard(intern) {
     </div>
 </div>`
 }
+
+// const generateHTML = function (sortArray) {
+//     return `<!DOCTYPE html>
+
+//     <html>
+//         <head>
+//             <meta charset="utf-8">
+//             <meta http-equiv="X-UA-Compatible" content="IE=edge">
+//             <title>Team Profile Generator</title>
+//             <meta name="description" content="">
+//             <meta name="viewport" content="width=device-width, initial-scale=1">
+//             <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+//             <link rel="stylesheet" href="./style.css">
+//             </head>
+//         <body>
+//             <header>Welcome to the Team Profile Generator!</header>
+//             <div class="columns">${sortArray}
+//                 <div class="card column is-3">
+//                     <div class="card-header">
+//                         <div class="card-header-title">Manager<br></br></div>
+//                     </div>
+//                     <div class="card-content">
+//                         <ul class="mgrInfo">
+//                             <li>ID:</li>
+//                             <li>Email:</li>
+//                             <li>Office#:</li>
+//                         </ul>
+//                     </div>
+//                 </div>
+//                 <div class="card column is-3">
+//                     <div class="card-header">
+//                         <div class="card-header-title">Engineer<br>(Name)</br></div>
+//                     </div>
+//                     <div class="card-content">
+//                         <ul class="engineerInfo">
+//                             <li>ID:</li>
+//                             <li>Email:</li>
+//                             <li>Github:</li>
+//                         </ul>
+//                     </div>
+//                 </div>
+//                 <div class="card column is-3">
+//                     <div class="card-header">
+//                         <div class="card-header-title">Intern<br>(Name)</br></div>
+//                     </div>
+//                     <div class="card-content">
+//                         <ul class="internInfo">
+//                             <li>ID:</li>
+//                             <li>Email:</li>
+//                             <li>School:</li>
+//                         </ul>
+//                     </div>
+//                 </div>
+//             </div>
+            
+            
+//             <script src="./index.js"></script>
+//         </body>
+//     </html>`
+// }
+
 module.exports = sortArray

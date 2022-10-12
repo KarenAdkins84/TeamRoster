@@ -42,16 +42,7 @@ const initialQuestions = [
             "I am finished building my team.",
         ]
     },
- ]; //.then((r) => {
-//     mgrOutput.push(r)
-//     let newMgr = new Manager(r.mgrName, r.mgrId, r.mgrEmail, r.mgrOfficeNum);
-
-//     let mgrName = newMgr.getName();
-//     let mgrId = newMgr.getId();
-//     let mgrEmail = newMgr.getEmail();
-//     let mgrOfficeNum = newMgr.getOfficeNum();
-//     let role = newMgr.getRole();
-//})
+ ]; 
 
 
 
@@ -170,14 +161,7 @@ function promptInternQuestions() {
 
     })
 }
-// function promptManagerQuestion() {
-//     return inquirer.prompt({
-//         type: "input",
-//         name: "officeNum",
-//         message: "What is the manager's office number?"
-//     })
-//     .then(({officeNum}) => {
-//         console.log(officeNum)
-//     })
-// }
+
 promptUser()
+//fs.writeFileSync('src.html', 'allEmployees');
+//console.log('file created');
